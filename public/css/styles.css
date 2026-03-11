@@ -1,0 +1,149 @@
+:root {
+    --primary-teal: #74b3ce;
+    --dark-teal: #1D3339;
+    --emergency-red: #BD586C;
+    --book-blue: #007bff;
+    --white: #ffffff;
+    --bg-light: #E0F2F1;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+/* --- Navigation --- */
+.custom-nav {
+    background-color: var(--primary-teal);
+    padding: 0.8rem 0;
+    transition: all 0.3s ease;
+}
+
+.custom-nav .nav-link {
+    color: var(--white) !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+    padding: 5px 0;
+}
+
+.custom-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--white);
+    transition: width 0.3s ease;
+}
+
+.custom-nav .nav-link:hover::after,
+.custom-nav .nav-link.active::after {
+    width: 100%;
+}
+
+/* --- Buttons --- */
+.btn-book-custom {
+    background-color: var(--book-blue);
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-emergency-custom {
+    background-color: var(--emergency-red);
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(189, 88, 108, 0.3);
+}
+
+/* --- Sign In/Up Buttons --- */
+.uiverse-button {
+    cursor: pointer;
+    padding: 8px 24px;
+    border: 2px solid #d6f3f4;
+    border-radius: 34px;
+    background: transparent;
+    color: #d6f3f4;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.uiverse-button:hover {
+    background-color: #0086bf;
+    color: white;
+}
+
+/* --- About Card Design Enhancements --- */
+.stat-card {
+    background: var(--dark-teal);
+    color: white;
+    border-radius: 20px;
+    border-top: 5px solid var(--primary-teal);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    background: #25424a;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card i {
+    color: var(--primary-teal);
+    transition: 0.3s ease;
+}
+
+/* --- Services & Contact Styling --- */
+.hero-section, .services-section {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/background.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.service-card {
+    background: rgba(29, 51, 57, 0.9);
+    color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: 0.3s ease;
+}
+
+.service-card i { color: var(--primary-teal); }
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background: rgba(74, 130, 138, 0.95);
+}
+
+.contact-card { transition: 0.3s; }
+.contact-card:hover { 
+    border: 1px solid var(--primary-teal); 
+    transform: scale(1.03);
+}
+
+.border-danger-top { border-top: 4px solid var(--emergency-red) !important; }
+.text-primary { color: var(--primary-teal) !important; }
+.bg-light-teal { background-color: var(--bg-light); }
+.footer { background-color: #0B2420; }
