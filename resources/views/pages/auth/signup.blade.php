@@ -72,7 +72,7 @@
                             <option value="" disabled selected hidden>USER TYPE</option>
                             <option value="student" {{ old('user_type') == 'student' ? 'selected' : '' }}>Student</option>
                             <option value="faculty" {{ old('user_type') == 'faculty' ? 'selected' : '' }}>Faculty</option>
-                            <option value="admin"   {{ old('user_type') == 'admin'   ? 'selected' : '' }}>Admin</option>
+                            <option value="staff"   {{ old('user_type') == 'staff'   ? 'selected' : '' }}>Staff</option>
                         </select>
                         <i class="bi bi-chevron-down dropdown-icon"></i>
                         @error('user_type') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -82,9 +82,12 @@
                 <div class="mb-3 position-relative">
                     <select name="department" class="form-control @error('department') is-invalid @enderror" required>
                         <option value="" disabled selected hidden>DEPARTMENT / COLLEGE</option>
-                        <option value="college_of_science"   {{ old('department') == 'college_of_science'   ? 'selected' : '' }}>College of Information Technology</option>
-                        <option value="college_of_education" {{ old('department') == 'college_of_education' ? 'selected' : '' }}>College of Education</option>
-                        <option value="college_of_arts"      {{ old('department') == 'college_of_arts'      ? 'selected' : '' }}>College of Criminal Justice</option>
+                        <option value="college_of_crim" {{ old('department') == 'college_of_crim' ? 'selected' : '' }}>Bachelor of Science in Criminal Justice</option>
+                        <option value="college_of_educ" {{ old('department') == 'college_of_educ' ? 'selected' : '' }}>Bachelor of Science in Education</option>
+                        <option value="college_of_fi" {{ old('department') == 'college_of_fi' ? 'selected' : '' }}>Bachelor of Science in Fisheries</option>
+                        <option value="college_of_ba"   {{ old('department') == 'college_of_ba'   ? 'selected' : '' }}>Bachelor of Science in Business Administration</option>
+                        <option value="college_of_it"   {{ old('department') == 'college_of_it'   ? 'selected' : '' }}>Bachelor of Science in Information Technology</option>
+                        
                     </select>
                     <i class="bi bi-chevron-down dropdown-icon"></i>
                     @error('department') <div class="invalid-feedback">{{ $message }}</div> @enderror

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class SignUController extends Controller
 {
@@ -15,28 +16,32 @@ class SignUController extends Controller
 
     public function processSignUp(Request $request)
     {
-        // 1. Validation
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
-            'school_id'  => 'required|string|max:50|unique:users',
-            'user_type'  => 'required|in:student,faculty,admin',
+            'school_id'  => 'required|string|max:50|unique:users,school_id',
+            'user_type'  => 'required|in:student,faculty,staff',
             'department' => 'required|string',
-            'email'      => 'required|email|unique:users',
+            'email'      => 'required|email|unique:users,email',
             'password'   => 'required|min:8|confirmed',
         ]);
 
-        // 2. Database Insert 
-        User::create([
-            'first_name' => $validated['first_name'],
-            'last_name'  => $validated['last_name'],
-            'school_id'  => $validated['school_id'],
-            'user_type'  => $validated['user_type'],
-            'department' => $validated['department'],
-            'email'      => $validated['email'],
-            'password'   => Hash::make($validated['password']),
-        ]);
+        try {
+            User::create([
+                'first_name' => $validated['first_name'],
+                'last_name'  => $validated['last_name'],
+                'school_id'  => $validated['school_id'],
+                'user_type'  => $validated['user_type'],
+                'department' => $validated['department'],
+                'email'      => $validated['email'],
+                'password'   => Hash::make($validated['password']),
+            ]);
 
-        return redirect('/signin')->with('success', 'Account created! Please sign in.');
+            return redirect()->route('sign_in')->with('success', 'Account created! Please sign in.');
+            
+        } catch (\Exception $e) {
+            Log::error("Signup Error: " . $e->getMessage());
+            return back()->withInput()->with('error', 'Database Error: ' . $e->getMessage());
+        }
     }
 }

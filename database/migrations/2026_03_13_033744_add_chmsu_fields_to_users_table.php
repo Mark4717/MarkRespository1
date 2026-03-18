@@ -9,17 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // Drop default name if you don't want to use it
-            $table->dropColumn('name');
+            // Check if column exists before dropping to avoid errors
+            if (Schema::hasColumn('users', 'name')) {
+                $table->dropColumn('name');
+            }
 
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('school_id')->unique()->nullable();
-            $table->enum('user_type', ['student', 'faculty', 'admin'])->default('student');
-            $table->string('department')->nullable();
-
-            // Optional: if you want email to be nullable (not recommended)
-            // $table->string('email')->nullable()->change();
+            $table->string('first_name')->after('id');
+            $table->string('last_name')->after('first_name');
+            $table->string('school_id')->unique()->after('last_name');
+            $table->enum('user_type', ['student', 'faculty', 'staff'])->default('student')->after('school_id');
+            $table->string('department')->after('user_type');
         });
     }
 
