@@ -95,7 +95,7 @@ select.form-control option {
 .password-toggle-icon, 
 .dropdown-icon {
     position: absolute;
-    top: 22.5px; /* Locked to center of input box */
+    top: 22.5px; 
     transform: translateY(-50%);
     color: #d6f3f4;
     font-size: 1.2rem;
@@ -138,6 +138,7 @@ select.form-control {
 .signin-link strong {
     color: #d6f3f4 !important;
     text-decoration: none !important;
+    font-weight: bolder;
 }
 
 .register-card a:hover {
