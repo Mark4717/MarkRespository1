@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHMSU Online Clinic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="userCss/userStyle.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header d-flex justify-content-between align-items-center px-4">
+        <div class="header-logo d-flex align-items-center">
+            <button id="sidebarToggle" class="btn me-3 text-dark fs-4 p-0">
+                <i class="bi bi-list"></i>
+            </button>
+            <img src="assets/logos.png" alt="Logo" width="50" class="me-2" onerror="this.style.display='none'">
+            <div class="lh-1 text-dark">
+                <span class="fw-bold d-block">CHMSU</span>
+                <small>Online Clinic</small>
+            </div>
+        </div>
+        <div class="profile-trigger" data-bs-toggle="modal" data-bs-target="#profileModal">
+            <i class="bi bi-person-circle"></i>
+        </div>
+    </header>
+    
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="vh-100 sticky-top d-flex flex-column">
+            <ul class="nav flex-column px-0">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-section="overview-section">
+                        <i class="bi bi-search me-2"></i> OVERVIEW
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="book-section">
+                        <i class="bi bi-calendar-check me-2"></i> BOOK APPOINTMENT
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="my-appt-section">
+                        <i class="bi bi-calendar3 me-2"></i> MY APPOINTMENT
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="records-section">
+                        <i class="bi bi-file-earmark-text me-2"></i> MEDICAL RECORDS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="emergency-section">
+                        <i class="bi bi-alarm me-2"></i> EMERGENCY REQUEST
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Sidebar - Log out -->
+            <div class="sidebar-footer p-3 mt-auto mb-5 text-center">
+                <button class="btn btn-logout px-5 rounded-pill shadow-sm" id="logoutBtn">LOG OUT</button>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="flex-grow-1 main-content-wrapper">
+            <main class="container-fluid px-5 pt-4">
+                
+                <!-- Overview Section -->
+                <section id="overview-section" class="content-section">
+                    <h1 class="fw-bold">WELCOME BACK <span id="userName">GUEST</span>!</h1>
+                    <p class="mb-4">Here's an overview of your appointment and health records</p>
+                    
+                    <!-- Stat cards -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <div class="stat-card h-100">
+                                <small>Total<br>Appointment</small>
+                                <div class="display-5 fw-bold mt-auto" id="totalAppointments">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card h-100">
+                                <small>Pending<br>Status</small>
+                                <div class="display-5 fw-bold mt-auto" id="pendingAppointments">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card h-100">
+                                <small>Approved<br>Status</small>
+                                <div class="display-5 fw-bold mt-auto" id="approvedAppointments">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card h-100">
+                                <small>Upcoming<br>Visit</small>
+                                <div class="display-5 fw-bold mt-auto" id="upcomingVisits">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Bar -->
+                    <div class="action-bar d-flex justify-content-between align-items-center p-3 mb-4 text-white">
+                        <div class="ps-2">
+                            <span class="d-block">Need Medical Assistance?</span>
+                            <small class="opacity-90">Book an Appointment or Request Emergency care</small>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-book px-4 rounded-pill" id="overviewBookBtn">BOOK APPOINTMENT</button>
+                            <button class="btn btn-emergency-custom px-4 rounded-pill" id="overviewEmergencyBtn">EMERGENCY CARE</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Appointments -->
+                    <div class="dark-list-container">
+                        <div class="list-header d-flex justify-content-between p-3">
+                            <div class="col-md-5">
+                                <h6 class="m-0 fw-bold">Recent Appointments</h6>
+                                <small class="opacity-75">Your latest medical appointments</small>
+                            </div>
+                            <button id="viewAllAppointments" class="btn btn-viewall rounded-pill px-4">VIEW ALL</button>
+                        </div>
+                        <div id="recentAppointmentsList">
+                            <!-- Recent appointments will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Book Appointment Section -->
+                <section id="book-section" class="content-section d-none">
+                    <h1 class="fw-bold">BOOK APPOINTMENT</h1>
+                    <p class="mb-4">Schedule your medical appointment with our clinic</p>
+                    
+                    <div class="dark-list-container p-4">
+                        <h5 class="fw-bold mb-3">Appointment Details</h5>
+                        <form id="appointmentForm">
+                            <div class="mb-3">
+                                <label class="form-label small">Service Type *</label>
+                                <select class="form-select custom-input" id="serviceType" required>
+                                    <option value="" selected disabled>Choose a service...</option>
+                                    <option value="Consultation">Consultation</option>
+                                    <option value="Medical Certificate">Medical Certificate</option>
+                                    <option value="General Check-up">General Check-up</option>
+                                    <option value="Follow-up Visit">Follow-up Visit</option>
+                                    <option value="Dental Check-up">Dental Check-up</option>
+                                </select>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Preferred Date *</label>
+                                    <input type="date" id="appointmentDate" class="form-control custom-input" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small">Preferred Time *</label>
+                                    <input type="time" id="appointmentTime" class="form-control custom-input" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label small">Reason for Visit *</label>
+                                <textarea class="form-control custom-input" id="reasonForVisit" rows="4" placeholder="Please describe your symptoms or reason for visit" required></textarea>
+                            </div>
+                            
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="urgentCheck">
+                                <label class="form-check-label small" for="urgentCheck">
+                                    <strong>Mark as Urgent</strong><br>
+                                    <span class="text-warning">Check this if you need immediate medical attention. Emergency cases will be prioritized.</span>
+                                </label>
+                            </div>
+                            
+                            <div class="info-box p-3 mb-4 rounded">
+                                <small><strong>Please Note:</strong></small>
+                                <ul class="small mb-0 mt-2">
+                                    <li>Appointments are subject to doctor availability</li>
+                                    <li>You will receive a notification once approved</li>
+                                    <li>Please arrive 10 minutes before your scheduled time</li>
+                                    <li>Bring your School ID and any relevant medical documents</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="d-flex justify-content-center gap-3">
+                                <button type="button" class="btn btn-cancel-card px-5 rounded-pill" id="cancelBooking">CANCEL</button>
+                                <button type="submit" class="btn btn-submit px-5 rounded-pill">SUBMIT APPOINTMENT</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- My Appointments Section -->
+                <section id="my-appt-section" class="content-section d-none">
+                    <h1 class="fw-bold">MY APPOINTMENTS</h1>
+                    <p class="mb-4">View and manage your appointments</p>
+                    
+                    <div class="dark-list-container p-4">
+                        <!-- Filter Tabs -->
+                        <div class="filter-bar mb-4">
+                            <span class="filter-tab active" data-filter="ALL">ALL</span>
+                            <span class="filter-tab" data-filter="PENDING">PENDING</span>
+                            <span class="filter-tab" data-filter="APPROVED">APPROVED</span>
+                            <span class="filter-tab" data-filter="COMPLETED">COMPLETED</span>
+                            <span class="filter-tab" data-filter="CANCELLED">CANCELLED</span>
+                        </div>
+                        
+                        <!-- Appointments List -->
+                        <div id="appointmentList" class="appointment-list">
+                            <!-- Appointments will be dynamically inserted here -->
+                        </div>
+                        
+                        <!-- Loading Spinner -->
+                        <div id="appointmentLoader" class="d-none">
+                            <div class="spinner"></div>
+                            <p class="text-center mt-2">Loading appointments...</p>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div id="noAppointmentsMessage" class="text-center p-5 d-none">
+                            <i class="bi bi-calendar-x fs-1 opacity-50"></i>
+                            <p class="mt-3">No appointments found</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Medical Records Section -->
+                <section id="records-section" class="content-section d-none">
+                    <h1 class="fw-bold">MEDICAL RECORDS</h1>
+                    <p>View your complete medical history</p>
+                    
+                    <div class="row g-4 mb-4 justify-content-center">
+                        <div class="col-md-3">
+                            <div class="stat-card p-3">
+                                <small>TOTAL VISITS</small>
+                                <div class="display-5 fw-bold" id="totalVisits">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card p-3">
+                                <small>MEDICAL CERTIFICATES</small>
+                                <div class="display-5 fw-bold" id="totalCertificates">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card p-3">
+                                <small>LAST VISIT</small>
+                                <div class="display-5 fw-bold" id="lastVisitDate">N/A</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical Records List -->
+                    <div class="card-item-dark p-4 mb-4">
+                        <h5 class="fw-bold mb-3">Medical History</h5>
+                        <div id="medicalRecordsList">
+                            <!-- Medical records will be dynamically inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="info-box-blue p-3 rounded">
+                        <h6 class="fw-bold"><i class="bi bi-file-earmark-text me-2"></i> ABOUT YOUR MEDICAL RECORDS</h6>
+                        <ul class="small mb-0 mt-2">
+                            <li>All medical records are confidential and secure</li>
+                            <li>Medical certificates can be claimed at the clinic</li>
+                            <li>Contact the clinic for any corrections or inquiries</li>
+                            <li>Records are updated within 24 hours after your visit</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Emergency Request Section -->
+                <section id="emergency-section" class="content-section d-none">
+                    <div class="alert alert-danger-custom d-flex align-items-center p-3 mb-3" id="emergencyAlert">
+                        <i class="bi bi-exclamation-triangle-fill me-3 fs-4"></i>
+                        <div>
+                            <strong>EMERGENCY MEDICAL REQUEST</strong><br>
+                            <small>For life-threatening emergencies, call 911 immediately or use the emergency hotline below</small>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="hotline-card p-3 text-center">
+                                <i class="bi bi-telephone-fill fs-4"></i>
+                                <h6 class="mt-2">CHMSU Clinic Emergency</h6>
+                                <strong>+63 (34) 123-4567</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="hotline-card p-3 text-center">
+                                <i class="bi bi-telephone-fill fs-4"></i>
+                                <h6 class="mt-2">National Emergency Hotline</h6>
+                                <strong>911</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dark-list-container p-4">
+                        <h5 class="fw-bold mb-3">EMERGENCY REQUEST FORM</h5>
+                        <form id="emergencyForm">
+                            <div class="mb-3">
+                                <label class="small fw-bold">Patient Full Name *</label>
+                                <input type="text" class="form-control custom-input" id="emergencyPatientName" placeholder="Enter full name" required>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="small fw-bold">Contact Number *</label>
+                                    <input type="tel" class="form-control custom-input" id="emergencyContact" placeholder="+63 XXX XXX XXXX" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small fw-bold">Current Location *</label>
+                                    <input type="text" class="form-control custom-input" id="emergencyLocation" placeholder="Building/Room/Landmark" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="small fw-bold">Type of Emergency *</label>
+                                <select class="form-control custom-input" id="emergencyType" required>
+                                    <option value="" selected disabled>Select emergency type...</option>
+                                    <option value="Medical">Medical Emergency</option>
+                                    <option value="Accident">Accident/Injury</option>
+                                    <option value="Breathing">Breathing Difficulty</option>
+                                    <option value="Chest Pain">Chest Pain</option>
+                                    <option value="Unconscious">Unconsciousness</option>
+                                    <option value="Bleeding">Severe Bleeding</option>
+                                    <option value="Allergic">Severe Allergic Reaction</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="small fw-bold">Symptoms and Condition *</label>
+                                <textarea class="form-control custom-input" id="emergencySymptoms" rows="3" placeholder="Describe the symptoms and current condition" required></textarea>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-emergency-custom px-5 rounded-pill" id="submitEmergency">
+                                    <i class="bi bi-exclamation-triangle me-2"></i>SUBMIT EMERGENCY REQUEST
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Emergency Requests History -->
+                    <div class="dark-list-container mt-4 p-4">
+                        <h5 class="fw-bold mb-3">Your Emergency Requests</h5>
+                        <div id="emergencyRequestsList">
+                            <!-- Emergency requests will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Profile Modal (View Only) -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content profile-modal-content p-4">
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+                <div class="text-center">
+                    <h2 class="fw-bold mb-4" id="profileModalLabel">PROFILE</h2>
+                    
+                    <div class="profile-avatar-large mx-auto mb-3">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    
+                    <h3 class="fw-bold mb-0" id="profileName">GUEST USER</h3>
+                    <p class="text-uppercase fw-bold opacity-75" id="profileType">STUDENT</p>
+                    
+                    <div class="profile-details mt-4 text-start">
+                        <p><strong>ID Number:</strong> <span id="profileId">Not set</span></p>
+                        <p><strong>Course/Department:</strong> <span id="profileDept">Not set</span></p>
+                        <p><strong>Email:</strong> <span id="profileEmail">Not set</span></p>
+                        <p><strong>Contact:</strong> <span id="profileContact">Not set</span></p>
+                    </div>
+                    
+                    <button class="btn btn-edit-profile px-5 py-2 mt-4 rounded-3" id="editProfileBtn">EDIT PROFILE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="userJs/userScript.js"></script>
+</body>
+</html>
