@@ -200,10 +200,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadEmergencyRequests() {
-        // TODO: add backend emergency endpoint when ready.
-        // For now, preserve local emergency list until backend endpoint is implemented.
-        emergencyRequests = JSON.parse(localStorage.getItem('emergencyRequests')) || [];
-        renderEmergencyRequests();
+        fetch('/dashboard/emergency-requests')
+            .then(response => response.json())
+            .then(data => {
+                emergencyRequests = data;
+                renderEmergencyRequests();
+                renderRecentAppointments();
+            })
+            .catch(error => {
+                console.error('Error loading emergency requests:', error);
+                emergencyRequests = JSON.parse(localStorage.getItem('emergencyRequests')) || [];
+                renderEmergencyRequests();
+            });
     }
 
     // ============= CORE ACTIONS =============
@@ -257,9 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.success) {
                 showToast('Emergency request submitted! Clinic staff will contact you.', 'danger');
-                // refresh emergency requests list if backend endpoint available
-                renderRecentAppointments();
-                renderEmergencyRequests();
+                // refresh emergency requests list from server
+                loadEmergencyRequests();
                 document.getElementById('emergencyForm').reset();
                 const alertBox = document.getElementById('emergencyAlert');
                 if (alertBox) {

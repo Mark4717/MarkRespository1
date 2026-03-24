@@ -63,6 +63,19 @@ class DashboardController extends Controller
     }
 
     /**
+     * Get user emergency requests (for AJAX requests)
+     */
+    public function getEmergencyRequests()
+    {
+        $user = Auth::user();
+        $emergencyRequests = $user->emergencyRequests()
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($emergencyRequests);
+    }
+
+    /**
      * Submit appointment booking
      */
     public function bookAppointment(Request $request)

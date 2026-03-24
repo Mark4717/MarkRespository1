@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard AJAX endpoints
     Route::get('/dashboard/appointments', [DashboardController::class, 'getAppointments'])->name('dashboard.appointments');
     Route::get('/dashboard/medical-records', [DashboardController::class, 'getMedicalRecords'])->name('dashboard.medical-records');
+    Route::get('/dashboard/emergency-requests', [DashboardController::class, 'getEmergencyRequests'])->name('dashboard.emergency-requests');
     Route::post('/dashboard/book-appointment', [DashboardController::class, 'bookAppointment'])->name('dashboard.book-appointment');
     Route::post('/dashboard/emergency', [DashboardController::class, 'submitEmergency'])->name('dashboard.emergency');
     Route::post('/dashboard/cancel-appointment', [DashboardController::class, 'cancelAppointment'])->name('dashboard.cancel-appointment');
