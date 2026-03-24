@@ -82,11 +82,11 @@
                 <div class="mb-3 position-relative">
                     <select name="department" class="form-control @error('department') is-invalid @enderror" required>
                         <option value="" disabled selected hidden>DEPARTMENT / COLLEGE</option>
-                        <option value="college_of_crim" {{ old('department') == 'college_of_crim' ? 'selected' : '' }}>Bachelor of Science in Criminal Justice</option>
-                        <option value="college_of_educ" {{ old('department') == 'college_of_educ' ? 'selected' : '' }}>Bachelor of Science in Education</option>
-                        <option value="college_of_fi" {{ old('department') == 'college_of_fi' ? 'selected' : '' }}>Bachelor of Science in Fisheries</option>
-                        <option value="college_of_ba"   {{ old('department') == 'college_of_ba'   ? 'selected' : '' }}>Bachelor of Science in Business Administration</option>
-                        <option value="college_of_it"   {{ old('department') == 'college_of_it'   ? 'selected' : '' }}>Bachelor of Science in Information Technology</option>
+                        <option value="COLLEGE OF CRIMINAL JUSTICE" {{ old('department') == 'COLLEGE OF CRIMINAL JUSTICE' ? 'selected' : '' }}>Bachelor of Science in Criminal Justice</option>
+                        <option value="COLLEGE OF EDUCATION" {{ old('department') == 'COLLEGE OF EDUCATION' ? 'selected' : '' }}>Bachelor of Science in Education</option>
+                        <option value="COLLEGE OF FISHERIES" {{ old('department') == 'COLLEGE OF FISHERIES' ? 'selected' : '' }}>Bachelor of Science in Fisheries</option>
+                        <option value="COLLEGE OF BUSINESS ADMINISTRATION"   {{ old('department') == 'COLLEGE OF BUSINESS ADMINISTRATION'   ? 'selected' : '' }}>Bachelor of Science in Business Administration</option>
+                        <option value="COLLEGE OF INFORMATION TECHNOLOGY"   {{ old('department') == 'COLLEGE OF INFORMATION TECHNOLOGY'   ? 'selected' : '' }}>Bachelor of Science in Information Technology</option>
                         
                     </select>
                     <i class="bi bi-chevron-down dropdown-icon"></i>
@@ -98,6 +98,13 @@
                            name="email" placeholder="EMAIL ADDRESS" 
                            value="{{ old('email') }}" required>
                     @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+
+                <div class="mb-3">
+                    <input type="tel" class="form-control @error('contact') is-invalid @enderror" 
+                           name="contact" placeholder="CONTACT NUMBER (Optional)" 
+                           value="{{ old('contact') }}">
+                    @error('contact') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="row mb-3">

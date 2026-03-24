@@ -1,29 +1,32 @@
+@auth
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - CHMSU Online Clinic</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>CHMSU Online Clinic - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('userCss/userStyle.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body class="bg-light">
-
-    <div class="container mt-5">
-        <div class="card shadow">
-            <div class="card-body text-center">
-                <h1 class="mb-4">Welcome, {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}!</h1>
-                <p class="lead">You are logged in as <strong>{{ auth()->user()->user_type }}</strong></p>
-                <p>Email: {{ auth()->user()->email }}</p>
-                <p>School ID: {{ auth()->user()->school_id ?? 'Not set' }}</p>
-                <p>Department: {{ auth()->user()->department }}</p>
-
-                <form action="{{ route('logout') }}" method="POST" class="mt-4">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
-            </div>
+<body>
+    @include('partials.header')
+    <div class="d-flex">
+        @include('partials.sidebar')
+        <div class="flex-grow-1 main-content-wrapper">
+            <main class="container-fluid px-5 pt-4">
+                @include('partials.overview')
+                @include('partials.book-appointment')
+                @include('partials.my-appointments')
+                @include('partials.medical-records')
+                @include('partials.emergency')
+            </main>
         </div>
     </div>
 
+    @include('partials.profile-modal')
+    @include('partials.footer-scripts')
 </body>
 </html>
+@endauth

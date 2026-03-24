@@ -23,6 +23,7 @@ class SignUController extends Controller
             'user_type'  => 'required|in:student,faculty,staff',
             'department' => 'required|string',
             'email'      => 'required|email|unique:users,email',
+            'contact'    => 'nullable|string|max:20',
             'password'   => 'required|min:8|confirmed',
         ]);
 
@@ -34,6 +35,7 @@ class SignUController extends Controller
                 'user_type'  => $validated['user_type'],
                 'department' => $validated['department'],
                 'email'      => $validated['email'],
+                'contact'    => $validated['contact'],
                 'password'   => Hash::make($validated['password']),
             ]);
 

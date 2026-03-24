@@ -10,13 +10,14 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-        protected $fillable = [
+    protected $fillable = [
         'first_name',
         'last_name',
         'school_id',
         'user_type',
         'department',
         'email',
+        'contact',
         'password',
     ];
 
@@ -31,5 +32,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function medicalRecords()
+    {
+        return $this->hasMany(MedicalRecord::class);
+    }
+
+    public function emergencyRequests()
+    {
+        return $this->hasMany(EmergencyRequest::class);
     }
 }
