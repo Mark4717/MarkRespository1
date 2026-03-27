@@ -6,6 +6,8 @@ use App\Http\Controllers\SignController;
 use App\Http\Controllers\SignUController;
 use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminDashboardController;
 
 // Landing Page
 Route::get('/', [IndexController::class, 'index'])->name('home');
@@ -27,6 +29,9 @@ Route::post('/signup', [SignUController::class, 'processSignUp']);
 // Forgot Password Routes
 Route::get('/forgot', [ForgotController::class, 'showForgot'])->name('forgot');
 
+// Admin Sign In Routes
+Route::get('/admin/signin', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+Route::post('/admin/signin', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
 // Protected Area
 Route::middleware(['auth'])->group(function () {
@@ -42,4 +47,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard/profile', [DashboardController::class, 'updateProfile'])->name('dashboard.profile.update');
 
     Route::post('/logout', [SignController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard/data', [AdminDashboardController::class, 'data'])->name('admin.data');
+    Route::match(['patch', 'post'], '/admin/appointments/{appointment}/status', [AdminDashboardController::class, 'updateAppointmentStatus'])->name('admin.appointments.status');
+    Route::match(['patch', 'post'], '/admin/emergency-requests/{emergencyRequest}/status', [AdminDashboardController::class, 'updateEmergencyStatus'])->name('admin.emergency-requests.status');
+    Route::post('/admin/medical-records', [AdminDashboardController::class, 'storeMedicalRecord'])->name('admin.medical-records.store');
+    Route::put('/admin/medical-records/{medicalRecord}', [AdminDashboardController::class, 'updateMedicalRecord'])->name('admin.medical-records.update');
+    Route::delete('/admin/medical-records/{medicalRecord}', [AdminDashboardController::class, 'destroyMedicalRecord'])->name('admin.medical-records.destroy');
+    Route::post('/admin/system/schedule', [AdminDashboardController::class, 'saveSchedule'])->name('admin.system.schedule');
+    Route::post('/admin/services', [AdminDashboardController::class, 'storeService'])->name('admin.services.store');
+    Route::put('/admin/services/{clinicService}', [AdminDashboardController::class, 'updateService'])->name('admin.services.update');
+    Route::delete('/admin/services/{clinicService}', [AdminDashboardController::class, 'destroyService'])->name('admin.services.destroy');
 });

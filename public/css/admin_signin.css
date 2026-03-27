@@ -1,0 +1,124 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #83B3C8;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+}
+
+.portal-title {
+    color: #1A3044;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.login-card {
+    background-color: #2F6E72;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.welcome-text {
+    color: #E2E8F0;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.form-label {
+    color: #E2E8F0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.custom-input {
+    background-color: #538D8F !important;
+    border: none;
+    border-radius: 8px;
+    height: 45px;
+    color: white !important;
+}
+
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.custom-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.1);
+}
+
+.form-check-label {
+    color: #E2E8F0;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    cursor: pointer;
+    color: #2c1d1d;
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.btn-signin {
+    background-color: #1A2838;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-signin:hover {
+    background-color: #0F1721;
+    color: #83B3C8;
+}
+
+.btn-signin:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.admin-note {
+    color: #d9edf5;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.admin-dashboard-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #83B3C8 0%, #5d97af 100%);
+}
+
+.admin-dashboard-card {
+    max-width: 720px;
+    background-color: #f6fbff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 18px 40px rgba(17, 40, 58, 0.16);
+}
+
+.dashboard-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background-color: #d9edf5;
+    color: #1A3044;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.dashboard-meta {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background-color: #e8f4f7;
+    color: #1A3044;
+}

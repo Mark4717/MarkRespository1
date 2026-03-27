@@ -46,9 +46,12 @@ class SignController extends Controller
     // Handle Logout
     public function logout(Request $request)
     {
+        $redirectRoute = Auth::user()?->user_type === 'admin' ? 'admin.login' : 'sign_in';
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/signin');
+
+        return redirect()->route($redirectRoute);
     }
 }

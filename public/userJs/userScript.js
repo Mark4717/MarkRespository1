@@ -94,6 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
+    function getEmergencyStatusClass(status) {
+        if (status === 'Pending') return 'badge-pending';
+        if (status === 'Received') return 'badge-approved';
+        if (status === 'In Treatment') return 'badge-pending';
+        if (status === 'Completed') return 'badge-completed';
+        return 'badge-cancelled';
+    }
+
     function updateProfileDisplay() {
         const profileNameEl = document.getElementById('profileName');
         const profileTypeEl = document.getElementById('profileType');
@@ -316,12 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
             itemElement.className = 'list-item d-flex justify-content-between p-3';
             
             if (item.type === 'emergency') {
+                const emergencyStatusClass = getEmergencyStatusClass(item.status);
                 itemElement.innerHTML = `
                     <div class="col-md-8">
                         <h6 class="m-0 fw-bold text-danger">🚨 EMERGENCY: ${item.emergency_type}</h6>
                         <small><i class="bi bi-geo-alt me-1"></i>${item.current_location}</small>
                     </div>
-                    <span class="badge-custom badge-pending rounded-pill px-3">URGENT</span>
+                    <span class="badge-custom ${emergencyStatusClass} rounded-pill px-3">${item.status}</span>
                 `;
             } else {
                 const statusClass = item.status === 'Pending' ? 'badge-pending' : 
@@ -358,7 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             filteredAppointments.sort((a, b) => new Date(b.created_at || b.appointment_date) - new Date(a.created_at || a.appointment_date));
 
-            if (filter === 'ALL' || filter === 'PENDING') {
+            if (filter === 'ALL') {
+                filteredAppointments = [...filteredAppointments, ...emergencyRequests.map(e => ({ ...e, isEmergency: true }))];
+            } else if (filter === 'PENDING') {
                 const pendingEmergencies = emergencyRequests.filter(e => e.status === 'Pending');
                 filteredAppointments = [...filteredAppointments, ...pendingEmergencies.map(e => ({ ...e, isEmergency: true }))];
             }
@@ -370,6 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             filteredAppointments.forEach(item => {
                 if (item.isEmergency) {
+                    const emergencyStatusClass = getEmergencyStatusClass(item.status);
                     const emergencyCard = document.createElement('div');
                     emergencyCard.className = 'card-item-light mb-3 p-3 border border-danger border-2';
                     emergencyCard.innerHTML = `
@@ -381,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p class="mb-1"><strong>Location:</strong> ${item.current_location}</p>
                                 <small class="text-muted">${new Date(item.created_at).toLocaleString()}</small>
                             </div>
-                            <span class="badge-custom badge-pending">URGENT</span>
+                            <span class="badge-custom ${emergencyStatusClass}">${item.status}</span>
                         </div>
                     `;
                     appointmentList.appendChild(emergencyCard);
@@ -476,6 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         emergencyRequests.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).forEach(emergency => {
+            const emergencyStatusClass = getEmergencyStatusClass(emergency.status);
             const emergencyCard = document.createElement('div');
             emergencyCard.className = 'card-item-light mb-3 p-3';
             emergencyCard.innerHTML = `
@@ -486,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="mb-1"><strong>Symptoms:</strong> ${emergency.symptoms}</p>
                         <small class="text-muted">Submitted: ${new Date(emergency.created_at).toLocaleString()}</small>
                     </div>
-                    <span class="badge-custom badge-pending">PENDING</span>
+                    <span class="badge-custom ${emergencyStatusClass}">${emergency.status}</span>
                 </div>
             `;
             emergencyList.appendChild(emergencyCard);
