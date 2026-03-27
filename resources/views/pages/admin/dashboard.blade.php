@@ -1,61 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>CHMSU Clinic Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
-</head>
-<body
-    data-admin-data-url="{{ route('admin.data') }}"
-    data-admin-appointment-status-url="{{ route('admin.appointments.status', ['appointment' => '__ID__']) }}"
-    data-admin-emergency-status-url="{{ route('admin.emergency-requests.status', ['emergencyRequest' => '__ID__']) }}"
-    data-admin-record-store-url="{{ route('admin.medical-records.store') }}"
-    data-admin-record-update-url="{{ route('admin.medical-records.update', ['medicalRecord' => '__ID__']) }}"
-    data-admin-record-destroy-url="{{ route('admin.medical-records.destroy', ['medicalRecord' => '__ID__']) }}"
-    data-admin-schedule-url="{{ route('admin.system.schedule') }}"
-    data-admin-service-store-url="{{ route('admin.services.store') }}"
-    data-admin-service-update-url="{{ route('admin.services.update', ['clinicService' => '__ID__']) }}"
-    data-admin-service-destroy-url="{{ route('admin.services.destroy', ['clinicService' => '__ID__']) }}"
->
-    <div class="d-flex h-100">
-        <nav class="sidebar p-3 d-flex flex-column" id="sidebar">
-            <div class="text-center mb-4">
-                <img src="{{ asset('images/logo.png') }}" alt="CHMSU Logo" class="sidebar-logo">
-                <h5 class="text-white fw-bold mt-2 sidebar-text">CHMSU</h5>
-            </div>
+@extends('layouts.admin')
 
-            <ul class="nav flex-column gap-2" id="sidebarNav">
-                <li class="nav-item"><a class="nav-link active" href="#" data-section="dashboard"><i class="bi bi-grid-fill"></i> <span class="ms-2">DASHBOARD</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-section="appointment"><i class="bi bi-calendar-event"></i> <span class="ms-2">APPOINTMENT</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-section="patients"><i class="bi bi-people-fill"></i> <span class="ms-2">PATIENTS</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-section="medical-records"><i class="bi bi-file-earmark-medical"></i> <span class="ms-2">MEDICAL RECORDS</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-section="reports"><i class="bi bi-graph-up"></i> <span class="ms-2">REPORTS</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-section="system"><i class="bi bi-gear-fill"></i> <span class="ms-2">SYSTEM</span></a></li>
-            </ul>
-
-            <form action="{{ route('logout') }}" method="POST" id="adminLogoutForm" class="mt-auto">
-                @csrf
-                <button type="submit" class="btn logout-btn w-100 rounded-pill d-flex align-items-center justify-content-center">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span class="ms-2 sidebar-text">LOG OUT</span>
-                </button>
-            </form>
-        </nav>
-        <div class="flex-grow-1 d-flex flex-column">
-            <header class="p-3 shadow-sm d-flex align-items-center">
-                <button id="sidebarToggle" class="btn me-3">
-                    <i class="bi bi-list fs-3 text-white"></i>
-                </button>
-                <h3 id="pageTitle" class="fw-bold mb-0 text-white">DASHBOARD</h3>
-            </header>
-            <main class="p-4 overflow-auto">
-                <div class="container-fluid">
+@section('content')
                     <section id="section-dashboard">
                         <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
                             <div>
@@ -303,10 +248,6 @@
                             <div class="tab-content" id="services-tab"><div class="services-card"><div class="services-content"><div id="servicesList" class="services-list"></div><button id="addServiceBtn" class="add-service-btn"><i class="bi bi-plus-circle"></i>ADD SERVICES</button></div></div></div>
                         </div>
                     </section>
-                </div>
-            </main>
-        </div>
-    </div>
 
     <div class="modal-overlay" id="editServiceModal">
         <div class="modal-container">
@@ -317,24 +258,9 @@
                 <div class="form-group"><label>STATUS</label><select id="editServiceStatusSelect" class="form-select"><option value="active">ACTIVE</option><option value="inactive">INACTIVE</option></select></div>
             </div>
             <div class="modal-footer"><button class="btn-cancel" id="cancelServiceModalBtn">CANCEL</button><button class="btn-save" id="saveServiceEditBtn">SAVE CHANGES</button></div>
+
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/admin_dashboard.js') }}"></script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
+@endsection
 
 
