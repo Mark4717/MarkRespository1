@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
 </head>
 <body
+    class="admin-app"
     data-admin-data-url="{{ route('admin.data') }}"
     data-admin-appointment-status-url="{{ route('admin.appointments.status', ['appointment' => '__ID__']) }}"
     data-admin-emergency-status-url="{{ route('admin.emergency-requests.status', ['emergencyRequest' => '__ID__']) }}"
@@ -23,11 +24,12 @@
     data-admin-service-update-url="{{ route('admin.services.update', ['clinicService' => '__ID__']) }}"
     data-admin-service-destroy-url="{{ route('admin.services.destroy', ['clinicService' => '__ID__']) }}"
 >
+    <a href="#adminMainContent" class="skip-link">Skip to main content</a>
     <div class="d-flex h-100">
         @include('partials.admin.sidebar')
         <div class="flex-grow-1 d-flex flex-column">
             @include('partials.admin.header')
-            <main class="p-4 overflow-auto">
+            <main id="adminMainContent" class="p-4 overflow-auto" tabindex="-1">
                 <div class="container-fluid">
                     @yield('content')
                 </div>

@@ -694,9 +694,19 @@ document.addEventListener('DOMContentLoaded', () => {
             sec.classList.toggle('d-none', shouldHide);
             console.log('Section', sec.id, shouldHide ? 'hidden' : 'shown');
         });
-        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('data-section') === sectionId));
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute('data-section') === sectionId;
+            link.classList.toggle('active', isActive);
+            link.setAttribute('aria-current', isActive ? 'page' : 'false');
+        });
         window.scrollTo(0, 0);
         if (window.innerWidth < 992 && sidebar) sidebar.classList.add('collapsed');
+        if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', String(!(sidebar && sidebar.classList.contains('collapsed'))));
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.setAttribute('tabindex', '-1');
+            activeSection.focus({ preventScroll: true });
+        }
         
         if (sectionId === 'my-appt-section') renderMyAppointments(getActiveFilter());
         else if (sectionId === 'records-section') renderMedicalRecords();
@@ -791,3 +801,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadEmergencyRequests();
     loadMedicalRecords();
 });
+
+
+

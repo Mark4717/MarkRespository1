@@ -295,10 +295,10 @@ class AdminDashboardController extends Controller
     private function formattedPatients(): array
     {
         return User::where('user_type', '!=', 'admin')
-            ->with(['medicalRecords' => fn ($query) => $query->latest('visit_date')])
+            ->with(['medicalRecords' => fn ($query) => $query->orderByDesc('visit_date')->orderByDesc('created_at')->orderByDesc('id')])
             ->get()
             ->map(function (User $user) {
-                $records = $user->medicalRecords->sortByDesc('visit_date')->values();
+                $records = $user->medicalRecords->values();
                 $latestRecord = $records->first();
 
                 return [
@@ -460,12 +460,20 @@ class AdminDashboardController extends Controller
     private function normalizeRecordType(string $visitType): string
     {
         return match (strtolower(trim($visitType))) {
+            'consultation' => 'Consultation',
+            'medical certificate' => 'Medical Certificate',
             'general checkup' => 'Check-up',
             'general check-up' => 'Check-up',
+            'check-up' => 'Check-up',
             'dental' => 'Check-up',
+            'dental checkup' => 'Check-up',
             'dental check-up' => 'Check-up',
             'follow up visit' => 'Follow-up',
-            default => $visitType,
+            'follow-up visit' => 'Follow-up',
+            'follow up' => 'Follow-up',
+            'follow-up' => 'Follow-up',
+            'emergency' => 'Emergency',
+            default => 'Consultation',
         };
     }
 
@@ -499,3 +507,7 @@ class AdminDashboardController extends Controller
             ->firstWhere('day_key', $dayKey)['sort_order'] ?? 99;
     }
 }
+
+
+
+

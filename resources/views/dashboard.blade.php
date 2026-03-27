@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="{{ asset('userCss/userStyle.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body>
+<body class="user-app">
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
     @include('partials.header')
     <div class="d-flex">
         @include('partials.sidebar')
         <div class="flex-grow-1 main-content-wrapper">
-            <main class="container-fluid px-5 pt-4">
+            <main id="mainContent" class="container-fluid px-5 pt-4" tabindex="-1">
                 @include('partials.overview')
                 @include('partials.book-appointment')
                 @include('partials.my-appointments')

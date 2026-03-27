@@ -1,28 +1,28 @@
 <!-- Sidebar -->
-<nav id="sidebar" class="vh-100 sticky-top d-flex flex-column">
+<nav id="sidebar" class="vh-100 sticky-top d-flex flex-column" aria-label="User navigation">
     <ul class="nav flex-column px-0">
         <li class="nav-item">
-            <a href="#" class="nav-link active" data-section="overview-section">
+            <a href="#overview-section" class="nav-link active" data-section="overview-section" aria-current="page">
                 <i class="bi bi-search me-2"></i> OVERVIEW
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link" data-section="book-section">
+            <a href="#book-section" class="nav-link" data-section="book-section">
                 <i class="bi bi-calendar-check me-2"></i> BOOK APPOINTMENT
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link" data-section="my-appt-section">
+            <a href="#my-appt-section" class="nav-link" data-section="my-appt-section">
                 <i class="bi bi-calendar3 me-2"></i> MY APPOINTMENT
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link" data-section="records-section">
+            <a href="#records-section" class="nav-link" data-section="records-section">
                 <i class="bi bi-file-earmark-text me-2"></i> MEDICAL RECORDS
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link" data-section="emergency-section">
+            <a href="#emergency-section" class="nav-link" data-section="emergency-section">
                 <i class="bi bi-alarm me-2"></i> EMERGENCY REQUEST
             </a>
         </li>

@@ -5,11 +5,11 @@
 
     <div class="dark-list-container p-4">
         <div class="filter-bar mb-4">
-            <span class="filter-tab active" data-filter="ALL">ALL</span>
-            <span class="filter-tab" data-filter="PENDING">PENDING</span>
-            <span class="filter-tab" data-filter="APPROVED">APPROVED</span>
-            <span class="filter-tab" data-filter="COMPLETED">COMPLETED</span>
-            <span class="filter-tab" data-filter="CANCELLED">CANCELLED</span>
+            <button type="button" class="filter-tab active" data-filter="ALL" aria-pressed="true">ALL</button>
+            <button type="button" class="filter-tab" data-filter="PENDING" aria-pressed="false">PENDING</button>
+            <button type="button" class="filter-tab" data-filter="APPROVED" aria-pressed="false">APPROVED</button>
+            <button type="button" class="filter-tab" data-filter="COMPLETED" aria-pressed="false">COMPLETED</button>
+            <button type="button" class="filter-tab" data-filter="CANCELLED" aria-pressed="false">CANCELLED</button>
         </div>
 
         <div id="appointmentList" class="appointment-list"></div>
