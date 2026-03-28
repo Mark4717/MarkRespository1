@@ -61,3 +61,57 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+🏥 School Clinic Appointment Management System
+Leader: Febbie A. Villagracia 
+Members: Mark Jhonas S. Tapit & Christan Jacob M. Verde
+
+📌 Overview 
+The School Clinic Appointment System is a web-based application designed to streamline clinic appointment scheduling within the school. It aims to provide a more efficient and organized way for students and staff to request and manage clinic visits, reducing waiting times and manual processes.
+
+🎯 Objectives
+Simplify booking: Make it easier for students to schedule visits.
+Efficient Management: Help clinic staff manage daily schedules.
+Centralized Records: Provide a digital repository for clinic records.
+Utility: Ensure the system is helpful for everyone within the school community.
+
+🛠️ Technologies Used
+Frontend: HTML, CSS, JavaScript
+Backend: Laravel (PHP Framework)
+Design & Collaboration: Canva 
+
+👥 Team Roles
+Febbie Villagracia: Leader, UI/UX Design, Storyboarding, Sketching, and Admin Panel development.
+Christan Jacob Verde: Backend Development, Wireframing, and Laravel Integration.
+Mark Jhonas Tapit: Backend Development, Wireframing, and Laravel Integration.
+📅 Development Timeline
+
+🧠 Week 1: Brainstorming
+Date: February 6–13, 2026 Discussed potential system ideas and target users.
+
+Proposed Titles:
+1. CHMSU Lost and Found System.
+2. Campus Vehicle and Parking Permit Monitoring System. 
+3. School Clinic Appointment System.
+
+✅ Week 2: Finalization & Proposal
+Date: February 16–20, 2026 
+
+We agreed on the "School Clinic Appointment System" after comparing objectives.
+Prepared a backup plan in case of rejection.
+Status: System proposal successfully approved.
+
+🎨 Weeks 3–4: Design Phase
+Date: Feb 24 – March 6, 2026
+
+Collaborated remotely via Canva.
+Completed Storyboarding, Sketching (Febbie), and Wireframing (Jonas & Christan).
+Rest period taken at the end of Week 4 to prepare for development.
+
+💻 Weeks 5–6: Development Phase
+Date: March 9–20, 2026 
+Started frontend and backend integration with Laravel.
+Completed: Sign-in and Sign-up systems.
+In Progress: Admin Dashboard and UI refinements.
