@@ -64,12 +64,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 
-
-📅 Development Timeline
+## 📅 Development Timeline
 
 🧠 Week 1: Brainstorming
-Date: February 6–13, 2026 Discussed potential system ideas and target users.
+Date: February 6–13, 2026 
 
+Discussed potential system ideas and target users.
 Proposed Titles:
 1. CHMSU Lost and Found System.
 2. Campus Vehicle and Parking Permit Monitoring System. 
