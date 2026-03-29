@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // User Profile - Default empty/guest state (will be overwritten by Blade data)
     let userProfile = {
         name: 'GUEST USER',
-        type: 'STUDENT',
+        type: '',
         idNumber: '',
         department: '',
         email: '',
