@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
-use Throwable;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\SignUController;
@@ -31,12 +30,11 @@ Route::get('/setup-admin', function () {
         }
 
         // run pending migrations and seed admin
-        
         Artisan::call('migrate', ['--force' => true]);
         Artisan::call('db:seed', ['--class' => 'Database\\Seeders\\AdminUserSeeder', '--force' => true]);
 
         return response('setup complete', 200);
-    } catch (Throwable $e) {
+    } catch (\Exception $e) {
         return response('setup failed: ' . $e->getMessage(), 500);
     }
 });
