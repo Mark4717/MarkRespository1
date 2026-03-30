@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: bsit21-itpe12
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: Laravel
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        sync: false
+      - key: APP_KEY
+        sync: false
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: error
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: RUN_DB_SEED
+        value: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: bsit21-itpe12-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: bsit21-itpe12-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: bsit21-itpe12-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: bsit21-itpe12-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: bsit21-itpe12-db
+          property: password
+
+databases:
+  - name: bsit21-itpe12-db
+    plan: free
