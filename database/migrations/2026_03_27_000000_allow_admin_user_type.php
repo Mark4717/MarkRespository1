@@ -18,7 +18,8 @@ return new class extends Migration
         }
 
         if ($driver === 'pgsql') {
-            DB::statement("ALTER TYPE user_type ADD VALUE IF NOT EXISTS 'admin'");
+            DB::statement('ALTER TABLE users DROP CONSTRAINT IF EXISTS users_user_type_check');
+            DB::statement("ALTER TABLE users ADD CONSTRAINT users_user_type_check CHECK (user_type IN ('student', 'faculty', 'staff', 'admin'))");
         }
     }
 
@@ -36,9 +37,8 @@ return new class extends Migration
         }
 
         if ($driver === 'pgsql') {
-            // PostgreSQL uses check constraint for Laravel enum type; update it to allow admin
             DB::statement('ALTER TABLE users DROP CONSTRAINT IF EXISTS users_user_type_check');
-            DB::statement("ALTER TABLE users ADD CONSTRAINT users_user_type_check CHECK (user_type IN ('student', 'faculty', 'staff', 'admin'))");
+            DB::statement("ALTER TABLE users ADD CONSTRAINT users_user_type_check CHECK (user_type IN ('student', 'faculty', 'staff'))");
         }
     }
 };
