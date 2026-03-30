@@ -14,6 +14,30 @@ Route::get('/up', function () {
     return response('ok', 200);
 });
 
+// Temporary setup endpoint for Render free tier (remove after run)
+Route::get('/setup-admin', function () {
+    if (config('app.env') !== 'local' && env('APP_DEBUG', false) !== true) {
+        abort(403, 'Forbidden');
+    }
+
+    try {
+        // PostgreSQL check constraint update for user_type
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement('ALTER TABLE users DROP CONSTRAINT IF EXISTS users_user_type_check');
+            DB::statement("ALTER TABLE users ADD CONSTRAINT users_user_type_check CHECK (user_type IN ('student', 'faculty', 'staff', 'admin'))");
+        }
+
+        // run pending migrations and seed admin
+        
+        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('db:seed', ['--class' => 'Database\\Seeders\\AdminUserSeeder', '--force' => true]);
+
+        return response('setup complete', 200);
+    } catch (Throwable $e) {
+        return response('setup failed: ' . $e->getMessage(), 500);
+    }
+});
+
 // Landing Page
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
