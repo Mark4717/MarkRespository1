@@ -15,12 +15,6 @@ return new class extends Migration
                 ELSE status
             END
         ");
-
-        DB::statement("
-            ALTER TABLE emergency_requests
-            MODIFY status ENUM('Pending', 'Received', 'In Treatment', 'Completed', 'Cancelled')
-            DEFAULT 'Pending'
-        ");
     }
 
     public function down(): void
@@ -33,12 +27,6 @@ return new class extends Migration
                 WHEN status = 'Completed' THEN 'Resolved'
                 ELSE status
             END
-        ");
-
-        DB::statement("
-            ALTER TABLE emergency_requests
-            MODIFY status ENUM('Pending', 'Responding', 'Resolved', 'Cancelled')
-            DEFAULT 'Pending'
         ");
     }
 };

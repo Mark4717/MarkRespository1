@@ -28,7 +28,7 @@ return new class extends Migration
                 'Other'
             ]);
             $table->text('symptoms');
-            $table->enum('status', ['Pending', 'Responding', 'Resolved', 'Cancelled'])->default('Pending');
+            $table->string('status')->default('Pending');
             $table->text('response_notes')->nullable();
             $table->timestamp('responded_at')->nullable();
             $table->timestamps();
