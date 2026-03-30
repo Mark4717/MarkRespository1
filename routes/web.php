@@ -11,6 +11,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminDashboardController;
 
+Route::get('/users', function () {
+    return \App\Models\User::all();
+});
 // Health check
 Route::get('/up', function () {
     return response('ok', 200);
