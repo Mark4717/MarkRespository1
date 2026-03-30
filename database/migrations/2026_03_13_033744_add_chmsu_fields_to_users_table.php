@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('first_name')->after('id');
             $table->string('last_name')->after('first_name');
             $table->string('school_id')->unique()->after('last_name');
-            $table->enum('user_type', ['student', 'faculty', 'staff'])->default('student')->after('school_id');
+            $table->enum('user_type', ['student', 'faculty', 'staff', 'admin'])->default('student')->after('school_id');
             $table->string('department')->after('user_type');
         });
     }
