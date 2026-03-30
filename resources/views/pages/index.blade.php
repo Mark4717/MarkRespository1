@@ -7,14 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <!--header-->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-nav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="images/LOGO1.png" alt="Logo" width="40" class="me-2"> 
+            <img src="/images/LOGO1.png" alt="Logo" width="40" class="me-2"> 
             <span>CHMSU Online Clinic</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-                <img src="images/logo.png" alt="CHMSU Seal" class="img-fluid hero-logo">
+                <img src="/images/logo.png" alt="CHMSU Seal" class="img-fluid hero-logo">
             </div>
         </div>
     </div>
@@ -176,7 +176,7 @@
 </section>
 <!--footer-->
 <footer class="footer py-4 text-center text-white">
-    <img src="images/LOGO1.png" width="50" alt="Logo">
+    <img src="{{ asset('images/LOGO1.png') }}" width="50" alt="Logo">
     <p class="mt-2 mb-0">CHMSU ONLINE CLINIC</p>
     <small>Your Health Priority</small>
     <hr class="w-50 mx-auto my-3">
@@ -184,6 +184,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('js/script.js')}}"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>

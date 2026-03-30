@@ -9,6 +9,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminDashboardController;
 
+// Health check
+Route::get('/up', function () {
+    return response('ok', 200);
+});
+
 // Landing Page
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
