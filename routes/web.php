@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
+use Throwable;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\SignUController;
