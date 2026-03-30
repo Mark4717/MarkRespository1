@@ -63,6 +63,6 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/admin_signin.js') }}"></script>
+    <script src="{{ asset('js/admin_signIn.js') }}"></script>
 </body>
 </html>
