@@ -11,6 +11,9 @@ php artisan view:clear
 
 php artisan migrate --force
 
+# Always ensure the admin user exists after migrations, even if RUN_DB_SEED is false
+php artisan db:seed --force --class=AdminUserSeeder || true
+
 if [ "$RUN_DB_SEED" = "true" ]; then
   php artisan db:seed --force
 fi

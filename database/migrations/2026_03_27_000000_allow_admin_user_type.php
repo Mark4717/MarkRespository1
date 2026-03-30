@@ -7,29 +7,37 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (DB::getDriverName() !== 'mysql') {
-            return;
+        $driver = DB::getDriverName();
+
+        if ($driver === 'mysql') {
+            DB::statement("
+                ALTER TABLE users
+                MODIFY COLUMN user_type ENUM('student', 'faculty', 'staff', 'admin')
+                NOT NULL DEFAULT 'student'
+            ");
         }
 
-        DB::statement("
-            ALTER TABLE users
-            MODIFY COLUMN user_type ENUM('student', 'faculty', 'staff', 'admin')
-            NOT NULL DEFAULT 'student'
-        ");
+        if ($driver === 'pgsql') {
+            DB::statement("ALTER TYPE user_type ADD VALUE IF NOT EXISTS 'admin'");
+        }
     }
 
     public function down(): void
     {
-        if (DB::getDriverName() !== 'mysql') {
-            return;
+        $driver = DB::getDriverName();
+
+        if ($driver === 'mysql') {
+            DB::statement("UPDATE users SET user_type = 'staff' WHERE user_type = 'admin'");
+            DB::statement("
+                ALTER TABLE users
+                MODIFY COLUMN user_type ENUM('student', 'faculty', 'staff')
+                NOT NULL DEFAULT 'student'
+            ");
         }
 
-        DB::statement("UPDATE users SET user_type = 'staff' WHERE user_type = 'admin'");
-
-        DB::statement("
-            ALTER TABLE users
-            MODIFY COLUMN user_type ENUM('student', 'faculty', 'staff')
-            NOT NULL DEFAULT 'student'
-        ");
+        if ($driver === 'pgsql') {
+            DB::statement("UPDATE users SET user_type = 'staff' WHERE user_type = 'admin'");
+            // PgSQL does not support drop value from enum directly; usually you need recreate type.
+        }
     }
 };

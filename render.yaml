@@ -27,7 +27,7 @@ services:
       - key: QUEUE_CONNECTION
         value: database
       - key: RUN_DB_SEED
-        value: false
+        value: true
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
