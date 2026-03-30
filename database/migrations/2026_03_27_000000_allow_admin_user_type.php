@@ -36,8 +36,9 @@ return new class extends Migration
         }
 
         if ($driver === 'pgsql') {
-            DB::statement("UPDATE users SET user_type = 'staff' WHERE user_type = 'admin'");
-            // PgSQL does not support drop value from enum directly; usually you need recreate type.
+            // PostgreSQL uses check constraint for Laravel enum type; update it to allow admin
+            DB::statement('ALTER TABLE users DROP CONSTRAINT IF EXISTS users_user_type_check');
+            DB::statement("ALTER TABLE users ADD CONSTRAINT users_user_type_check CHECK (user_type IN ('student', 'faculty', 'staff', 'admin'))");
         }
     }
 };
