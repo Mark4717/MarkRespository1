@@ -20,13 +20,11 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.lock* ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
-
 COPY . .
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist && \
+    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 COPY docker/start.sh /usr/local/bin/start-render
