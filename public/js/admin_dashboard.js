@@ -63,8 +63,11 @@ if(els.cancelRecordBtn)els.cancelRecordBtn.addEventListener('click',()=>{els.new
 if(els.newRecordToggleBtn)els.newRecordToggleBtn.addEventListener('click',()=>els.newRecordForm.classList.toggle('d-none'));
 if(els.patientSearch)els.patientSearch.addEventListener('input',e=>{$$('.patient-card').forEach(card=>card.style.display=card.textContent.toLowerCase().includes(e.target.value.toLowerCase())?'':'none');});
 if(els.statusFilter)els.statusFilter.addEventListener('change',filterAppointments);
-if(els.toggle)els.toggle.addEventListener('click',()=>els.sidebar?.classList.toggle('collapsed'));
+function syncSidebarState(){if(!els.sidebar||!els.toggle)return;const expanded=window.innerWidth<992?els.sidebar.classList.contains('mobile-open'):!els.sidebar.classList.contains('collapsed');els.toggle.setAttribute('aria-expanded',String(expanded));}
+if(els.toggle)els.toggle.addEventListener('click',()=>{if(!els.sidebar)return;if(window.innerWidth<992){const willOpen=!els.sidebar.classList.contains('mobile-open');els.sidebar.classList.toggle('mobile-open',willOpen);els.sidebar.classList.toggle('collapsed',!willOpen);}else{els.sidebar.classList.toggle('collapsed');}syncSidebarState();});
 els.nav.forEach(link=>link.addEventListener('click',e=>{e.preventDefault();els.nav.forEach(n=>n.classList.remove('active'));link.classList.add('active');const target=link.dataset.section;els.sections.forEach(sec=>sec.classList.toggle('d-none',sec.id!==`section-${target}`));if(els.pageTitle)els.pageTitle.textContent=link.querySelector('span')?.textContent||'DASHBOARD';if(target==='reports')loadReports(currentReportType);if(target==='appointment')filterAppointments();}));
+document.addEventListener('click',e=>{if(!els.sidebar||window.innerWidth>=992||!els.sidebar.classList.contains('mobile-open'))return;const clickedInsideSidebar=els.sidebar.contains(e.target);const clickedToggle=els.toggle&&els.toggle.contains(e.target);if(!clickedInsideSidebar&&!clickedToggle){els.sidebar.classList.remove('mobile-open');els.sidebar.classList.add('collapsed');syncSidebarState();}});
+window.addEventListener('resize',()=>{if(!els.sidebar)return;if(window.innerWidth>=992){els.sidebar.classList.remove('mobile-open');}else if(!els.sidebar.classList.contains('mobile-open')){els.sidebar.classList.add('collapsed');}syncSidebarState();});
 if(els.applyFilterBtn)els.applyFilterBtn.addEventListener('click',()=>loadReports(els.reportTypeSelect?.value||'service'));
 if(els.exportPDFBtn)els.exportPDFBtn.addEventListener('click',async()=>{const src=$('.reports-container');if(!src)return;const wrap=document.createElement('div');wrap.style.position='absolute';wrap.style.left='-9999px';wrap.appendChild(src.cloneNode(true));document.body.appendChild(wrap);await html2pdf().set({margin:[0.5,0.5,0.5,0.5],filename:`CHMSU_Report_${Date.now()}.pdf`,html2canvas:{scale:2},jsPDF:{unit:'in',format:'a4',orientation:'portrait'}}).from(wrap).save();wrap.remove();});
 if(els.exportExcelBtn)els.exportExcelBtn.addEventListener('click',()=>{const rows=[['Label','Value'],...Object.entries(currentReportType==='monthly'?reportMonths():reportServices())];const ws=XLSX.utils.aoa_to_sheet(rows);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'CHMSU_Report');XLSX.writeFile(wb,`CHMSU_Report_${Date.now()}.xlsx`);});
@@ -75,9 +78,8 @@ if(els.closeServiceModalBtn)els.closeServiceModalBtn.addEventListener('click',cl
 if(els.saveServiceEditBtn)els.saveServiceEditBtn.addEventListener('click',async()=>{if(!currentEditServiceId)return;try{const formData=new FormData();formData.append('_method','PUT');formData.append('name',els.editServiceNameInput.value||'');formData.append('description',els.editServiceDescInput.value||'');formData.append('active',els.editServiceStatusSelect.value==='active'?'1':'0');const d=await api(url(routes.serviceUpdate,currentEditServiceId),{method:'POST',body:formData});alertMsg(d.message);closeServiceModal();await loadDashboardData();}catch(err){alertMsg(err.message);}});
 $$('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{$$('.tab-btn').forEach(b=>b.classList.remove('active'));$$('.tab-content').forEach(c=>c.classList.remove('active'));btn.classList.add('active');document.getElementById(`${btn.dataset.tab}-tab`)?.classList.add('active');}));
 if(els.logoutForm)els.logoutForm.addEventListener('submit',e=>{if(!confirm('Are you sure you want to logout?'))e.preventDefault();});
-initCharts();hookScheduleToggles();loadDashboardData().catch(err=>alertMsg(err.message));setInterval(()=>loadDashboardData().catch(()=>{}),30000);
+syncSidebarState();initCharts();hookScheduleToggles();loadDashboardData().catch(err=>alertMsg(err.message));setInterval(()=>loadDashboardData().catch(()=>{}),30000);
 });
-
 
 
 

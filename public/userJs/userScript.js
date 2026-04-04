@@ -700,8 +700,14 @@ document.addEventListener('DOMContentLoaded', () => {
             link.setAttribute('aria-current', isActive ? 'page' : 'false');
         });
         window.scrollTo(0, 0);
-        if (window.innerWidth < 992 && sidebar) sidebar.classList.add('collapsed');
-        if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', String(!(sidebar && sidebar.classList.contains('collapsed'))));
+        if (window.innerWidth < 992 && sidebar) {
+            sidebar.classList.remove('mobile-open');
+            sidebar.classList.add('collapsed');
+        }
+        if (sidebarToggle) {
+            const expanded = !!(sidebar && (sidebar.classList.contains('mobile-open') || !sidebar.classList.contains('collapsed')));
+            sidebarToggle.setAttribute('aria-expanded', String(expanded));
+        }
         const activeSection = document.getElementById(sectionId);
         if (activeSection) {
             activeSection.setAttribute('tabindex', '-1');
@@ -714,8 +720,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============= EVENT LISTENERS =============
+    function closeMobileSidebar() {
+        if (!sidebar || window.innerWidth >= 992) return;
+        sidebar.classList.remove('mobile-open');
+        sidebar.classList.add('collapsed');
+        if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'false');
+    }
+
     if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+        sidebarToggle.addEventListener('click', () => {
+            if (!sidebar) return;
+            if (window.innerWidth < 992) {
+                const willOpen = !sidebar.classList.contains('mobile-open');
+                sidebar.classList.toggle('mobile-open', willOpen);
+                sidebar.classList.toggle('collapsed', !willOpen);
+                sidebarToggle.setAttribute('aria-expanded', String(willOpen));
+            } else {
+                sidebar.classList.toggle('collapsed');
+                sidebarToggle.setAttribute('aria-expanded', String(!sidebar.classList.contains('collapsed')));
+            }
+        });
     }
 
     navLinks.forEach(link => {
@@ -724,6 +748,26 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Nav link clicked:', this.getAttribute('data-section'));
             showSection(this.getAttribute('data-section'));
         });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!sidebar || window.innerWidth >= 992 || !sidebar.classList.contains('mobile-open')) return;
+        const clickedInsideSidebar = sidebar.contains(event.target);
+        const clickedToggle = sidebarToggle && sidebarToggle.contains(event.target);
+        if (!clickedInsideSidebar && !clickedToggle) {
+            closeMobileSidebar();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (!sidebar) return;
+        if (window.innerWidth >= 992) {
+            sidebar.classList.remove('mobile-open');
+            if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', String(!sidebar.classList.contains('collapsed')));
+        } else if (!sidebar.classList.contains('mobile-open')) {
+            sidebar.classList.add('collapsed');
+            if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'false');
+        }
     });
 
     if (viewAllBtn) viewAllBtn.addEventListener('click', () => showSection('my-appt-section'));
@@ -801,6 +845,5 @@ document.addEventListener('DOMContentLoaded', () => {
     loadEmergencyRequests();
     loadMedicalRecords();
 });
-
 
 

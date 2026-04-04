@@ -1358,3 +1358,193 @@ div#noPatientSelected.detail-placeholder {
     }
 }
 
+@media (max-width: 991.98px) {
+    html,
+    body {
+        overflow: auto;
+    }
+
+    .d-flex.h-100 {
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(320px, 86vw);
+        min-width: 0;
+        transform: translateX(-100%);
+        z-index: 1200;
+        overflow-y: auto;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .sidebar.collapsed {
+        width: min(320px, 86vw);
+        min-width: 0;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.collapsed .sidebar-logo {
+        width: 80px;
+    }
+
+    .sidebar.collapsed .sidebar-text,
+    .sidebar.collapsed .nav-link span {
+        opacity: 1;
+        visibility: visible;
+        position: static;
+    }
+
+    .flex-grow-1 {
+        min-height: 100vh;
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1100;
+        padding: 1rem !important;
+    }
+
+    main {
+        padding: 1rem !important;
+        overflow: visible !important;
+    }
+
+    .medical-records-header,
+    .reports-header,
+    .medical-records-header + .med-stats-row {
+        gap: 1rem;
+    }
+
+    .medical-records-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-new-record,
+    .filter-select {
+        width: 100%;
+    }
+
+    .appointment-table-container,
+    .report-filter-card,
+    .report-chart-card,
+    .report-breakdown-card,
+    .chart-container,
+    .detail-info-container,
+    .detail-placeholder,
+    .new-record-form-container,
+    .schedule-card,
+    .services-card {
+        border-radius: 18px;
+    }
+
+    .appointment-table-container {
+        overflow-x: auto;
+    }
+
+    .appointment-table {
+        min-width: 760px;
+    }
+
+    .patient-list-container {
+        max-height: none;
+    }
+
+    div#noPatientSelected.detail-placeholder {
+        height: 320px !important;
+        min-height: 320px !important;
+        max-height: none !important;
+    }
+
+    .med-stats-row {
+        padding: 1rem;
+        gap: 1rem;
+        border-radius: 24px;
+    }
+
+    .med-stat-item {
+        min-width: calc(50% - 0.5rem);
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+
+    .system-tabs {
+        flex-direction: column;
+        gap: 0.75rem;
+        border-bottom: 0;
+    }
+
+    .tab-btn {
+        justify-content: center;
+        border-radius: 12px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    header {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    #pageTitle {
+        font-size: 1.25rem;
+    }
+
+    .stat-card {
+        padding: 1.1rem 0.85rem;
+    }
+
+    .chart-wrapper,
+    .pie-wrapper {
+        height: 240px;
+    }
+
+    .record-card-header,
+    .service-header,
+    .bar-label,
+    .time-range,
+    .schedule-item,
+    .notification-item .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .action-wrapper,
+    .service-actions,
+    .emergency-actions {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .btn-action-text,
+    .btn-edit,
+    .btn-delete,
+    .btn-emergency-action {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-dialog {
+        margin: 0.75rem;
+    }
+
+    .modal-container {
+        width: calc(100% - 1.5rem);
+    }
+
+    .med-stat-item {
+        min-width: 100%;
+        flex-basis: 100%;
+    }
+}
