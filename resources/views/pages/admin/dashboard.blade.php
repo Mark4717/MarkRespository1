@@ -9,10 +9,10 @@
                             </div>
                         </div>
                         <div class="row g-3 mb-4">
-                            <div class="col-md col-sm-6"><div class="stat-card card-blue"><span class="stat-number d-block fs-2 fw-bold" id="statTotalAppointments">0</span><span class="stat-label">TOTAL APPOINTMENT</span></div></div>
-                            <div class="col-md col-sm-6"><div class="stat-card card-teal"><span class="stat-number d-block fs-2 fw-bold" id="statPendingRequests">0</span><span class="stat-label">PENDING REQUESTS</span></div></div>
-                            <div class="col-md col-sm-6"><div class="stat-card card-blue"><span class="stat-number d-block fs-2 fw-bold" id="statApproved">0</span><span class="stat-label">APPROVED</span></div></div>
-                            <div class="col-md col-sm-6"><div class="stat-card card-teal"><span class="stat-number d-block fs-2 fw-bold" id="statCancelled">0</span><span class="stat-label">CANCELLED</span></div></div>
+                            <div class="col-6 col-xl"><div class="stat-card card-blue"><span class="stat-number d-block fs-2 fw-bold" id="statTotalAppointments">0</span><span class="stat-label">TOTAL APPOINTMENT</span></div></div>
+                            <div class="col-6 col-xl"><div class="stat-card card-teal"><span class="stat-number d-block fs-2 fw-bold" id="statPendingRequests">0</span><span class="stat-label">PENDING REQUESTS</span></div></div>
+                            <div class="col-6 col-xl"><div class="stat-card card-blue"><span class="stat-number d-block fs-2 fw-bold" id="statApproved">0</span><span class="stat-label">APPROVED</span></div></div>
+                            <div class="col-6 col-xl"><div class="stat-card card-teal"><span class="stat-number d-block fs-2 fw-bold" id="statCancelled">0</span><span class="stat-label">CANCELLED</span></div></div>
                             <div class="col-md col-sm-12"><div class="stat-card card-dark"><span class="stat-number d-block fs-2 fw-bold" id="statTodaySchedule">0</span><span class="stat-label">TODAY'S SCHEDULE</span></div></div>
                         </div>
                         <div class="row g-4 mb-4">
@@ -23,12 +23,12 @@
                     </section>
 
                     <section id="section-appointment" class="d-none">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
                             <div>
                                 <h4 class="fw-bold text-primary-dark mb-1">ADMIN APPOINTMENT</h4>
                                 <p class="text-muted small">Manage and track all clinic appointments</p>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2 flex-wrap admin-filter-wrap">
                                 <i class="bi bi-funnel fs-4 text-primary"></i>
                                 <select id="statusFilter" class="form-select rounded-pill px-4 fw-bold filter-select">
                                     <option value="all">ALL STATUS</option>
@@ -91,7 +91,7 @@
                     <section id="section-patients" class="d-none">
                         <div class="row g-4">
                             <div class="col-12"><h4 class="fw-bold text-primary-dark mb-0">ADMIN PATIENTS</h4><p class="text-muted small">View and manage patient records</p></div>
-                            <div class="col-md-5">
+                            <div class="col-12 col-lg-5">
                                 <div class="patient-search-wrapper mb-4">
                                     <div class="input-group shadow-sm rounded-pill overflow-hidden bg-white border-2" style="border: 2px solid #6c9fb8;">
                                         <span class="input-group-text bg-white border-0 ps-3"><i class="bi bi-search text-dark"></i></span>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="patient-list-container" id="patientList"></div>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-12 col-lg-7">
                                 <div id="noPatientSelected" class="detail-placeholder d-flex flex-column align-items-center justify-content-center h-100 rounded-4" style="height: 650px; min-height: 650px;">
                                     <i class="bi bi-person-circle fs-1 text-dark opacity-50 mb-3"></i>
                                     <h5 class="fw-bold text-dark opacity-75">Select a patient to view details</h5>
@@ -112,8 +112,8 @@
                                     </div>
                                     <div class="mb-4"><h6 class="fw-bold text-dark mb-2">EMAIL</h6><div class="detail-data-pill p-3 px-4" id="detailEmail">-</div></div>
                                     <div class="row g-3 mb-4">
-                                        <div class="col-6"><div class="info-stat-card"><span class="fw-bold d-block mb-2">Total Visits</span><span class="display-4 fw-bold" id="detailTotalVisits">0</span></div></div>
-                                        <div class="col-6"><div class="info-stat-card"><span class="fw-bold d-block mb-2">Last Visit</span><span class="fs-3 fw-bold" id="detailLastVisit">-</span></div></div>
+                                        <div class="col-12 col-sm-6"><div class="info-stat-card"><span class="fw-bold d-block mb-2">Total Visits</span><span class="display-4 fw-bold" id="detailTotalVisits">0</span></div></div>
+                                        <div class="col-12 col-sm-6"><div class="info-stat-card"><span class="fw-bold d-block mb-2">Last Visit</span><span class="fs-3 fw-bold" id="detailLastVisit">-</span></div></div>
                                     </div>
                                     <div><h6 class="fw-bold text-dark text-center mb-3">MEDICAL HISTORY</h6><div class="medical-history-box p-4" id="detailMedicalHistory"><p class="mb-0">No medical history available.</p></div></div>
                                 </div>
@@ -134,12 +134,12 @@
                         <div id="newRecordForm" class="new-record-form-container d-none">
                             <h5 class="fw-bold text-primary-dark mb-4"><i class="bi bi-file-earmark-plus me-2"></i>CREATE NEW MEDICAL RECORD</h5>
                             <div class="row g-4">
-                                <div class="col-md-6"><label class="form-label-dark">PATIENT NAME</label><select id="recordPatientId" class="med-input"><option value="">Select patient</option></select></div>
-                                <div class="col-md-6"><label class="form-label-dark">VISIT TYPE</label><select id="recordVisitType" class="med-input"><option value="Consultation">Consultation</option><option value="General Checkup">General Checkup</option><option value="Dental">Dental</option><option value="Emergency">Emergency</option><option value="Medical Certificate">Medical Certificate</option></select></div>
+                                <div class="col-12 col-md-6"><label class="form-label-dark">PATIENT NAME</label><select id="recordPatientId" class="med-input"><option value="">Select patient</option></select></div>
+                                <div class="col-12 col-md-6"><label class="form-label-dark">VISIT TYPE</label><select id="recordVisitType" class="med-input"><option value="Consultation">Consultation</option><option value="General Checkup">General Checkup</option><option value="Dental">Dental</option><option value="Emergency">Emergency</option><option value="Medical Certificate">Medical Certificate</option></select></div>
                                 <div class="col-12"><label class="form-label-dark">DIAGNOSIS</label><textarea id="recordDiagnosis" class="med-textarea" rows="2" placeholder="Enter diagnosis..."></textarea></div>
                                 <div class="col-12"><label class="form-label-dark">PRESCRIPTION</label><textarea id="recordPrescription" class="med-textarea" rows="2" placeholder="Enter prescription..."></textarea></div>
                                 <div class="col-12"><label class="form-label-dark">NOTES</label><textarea id="recordNotes" class="med-textarea" rows="2" placeholder="Additional notes..."></textarea></div>
-                                <div class="col-12 d-flex justify-content-end gap-3 mt-3"><button class="btn btn-cancel-record" id="cancelRecordBtn" type="button">CANCEL</button><button class="btn btn-save-record" id="saveRecordBtn" type="button">SAVE RECORD</button></div>
+                                <div class="col-12 d-flex justify-content-end gap-3 mt-3 flex-wrap admin-record-actions"><button class="btn btn-cancel-record" id="cancelRecordBtn" type="button">CANCEL</button><button class="btn btn-save-record" id="saveRecordBtn" type="button">SAVE RECORD</button></div>
                             </div>
                         </div>
                         <div class="records-card-list" id="medicalRecordsList"></div>
@@ -218,9 +218,9 @@
                                 </div>
                             </div>
                             <div class="row g-3 mb-4">
-                                <div class="col-md-4"><div class="stat-card card-blue text-center p-3"><span class="stat-number d-block fs-2 fw-bold" id="reportTotalAppointments">0</span><span class="stat-label">TOTAL APPOINTMENTS</span></div></div>
-                                <div class="col-md-4"><div class="stat-card card-teal text-center p-3"><span class="stat-number d-block fs-2 fw-bold" id="reportTotalPatients">0</span><span class="stat-label">TOTAL PATIENTS</span></div></div>
-                                <div class="col-md-4"><div class="stat-card card-dark text-center p-3"><span class="stat-number d-block fs-2 fw-bold" id="reportCompletionRate">0%</span><span class="stat-label">COMPLETION RATE</span></div></div>
+                                <div class="col-12 col-md-4"><div class="stat-card card-blue text-center p-3"><span class="stat-number d-block fs-2 fw-bold" id="reportTotalAppointments">0</span><span class="stat-label">TOTAL APPOINTMENTS</span></div></div>
+                                <div class="col-12 col-md-4"><div class="stat-card card-teal text-center p-3"><span class="stat-number d-block fs-2 fw-bold" id="reportTotalPatients">0</span><span class="stat-label">TOTAL PATIENTS</span></div></div>
+                                <div class="col-12 col-md-4"><div class="stat-card card-dark text-center p-3"><span class="stat-number d-block fs-2 fw-bold" id="reportCompletionRate">0%</span><span class="stat-label">COMPLETION RATE</span></div></div>
                             </div>
                             <div class="report-chart-card p-4 rounded-4 mb-4"><h5 class="fw-bold text-primary-dark mb-4" id="chartTitle">Service Distribution (Number of Visits)</h5><div id="horizontalBarChartContainer" class="horizontal-bars-container"></div></div>
                             <div class="report-breakdown-card p-4 rounded-4"><h6 class="fw-bold text-primary-dark mb-3">SERVICE BREAKDOWN</h6><div id="serviceBreakdownList" class="row g-3"></div></div>
@@ -262,5 +262,4 @@
         </div>
     </div>
 @endsection
-
 

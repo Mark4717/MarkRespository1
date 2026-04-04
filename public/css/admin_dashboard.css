@@ -1495,19 +1495,32 @@ div#noPatientSelected.detail-placeholder {
     header {
         flex-wrap: wrap;
         gap: 0.5rem;
+        padding: 0.75rem !important;
     }
 
     #pageTitle {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
     }
 
     .stat-card {
-        padding: 1.1rem 0.85rem;
+        padding: 0.95rem 0.75rem;
+        min-height: 104px;
+        border-radius: 14px;
+    }
+
+    .stat-card .stat-number {
+        font-size: 1.5rem !important;
+        line-height: 1.05;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.5px;
     }
 
     .chart-wrapper,
     .pie-wrapper {
-        height: 240px;
+        height: 220px;
     }
 
     .record-card-header,
@@ -1546,5 +1559,130 @@ div#noPatientSelected.detail-placeholder {
     .med-stat-item {
         min-width: 100%;
         flex-basis: 100%;
+    }
+
+    main {
+        padding: 0.85rem !important;
+    }
+
+    .medical-records-header,
+    .reports-header,
+    .system-title,
+    .patient-search-wrapper,
+    .report-filter-card,
+    .report-chart-card,
+    .report-breakdown-card,
+    .new-record-form-container,
+    .appointment-table-container,
+    .emergency-box,
+    .chart-container,
+    .schedule-content,
+    .services-content {
+        margin-bottom: 1rem !important;
+    }
+
+    .medical-records-header h4,
+    .reports-header h4,
+    .system-title h1,
+    #section-dashboard h4,
+    #section-appointment h4,
+    #section-patients h4 {
+        font-size: 1.35rem;
+    }
+
+    .filter-select,
+    .admin-filter-wrap,
+    .btn-emergency-viewall,
+    .btn-new-record {
+        width: 100%;
+    }
+
+    .admin-filter-wrap {
+        align-items: stretch !important;
+    }
+
+    .emergency-box {
+        padding: 1rem;
+        border-radius: 18px;
+    }
+
+    .notification-item,
+    .detail-field,
+    .record-card,
+    .service-item,
+    .breakdown-item,
+    .patient-card {
+        border-radius: 14px;
+    }
+
+    .appointment-table {
+        min-width: 680px;
+    }
+
+    .patient-card {
+        padding: 1rem;
+    }
+
+    .detail-info-container,
+    .detail-placeholder {
+        padding: 1rem !important;
+    }
+
+    .info-stat-card {
+        padding: 1rem 0.85rem;
+        border-radius: 18px;
+    }
+
+    .medical-history-box {
+        padding: 1rem !important;
+        border-radius: 18px;
+    }
+
+    .new-record-form-container,
+    .report-filter-card,
+    .report-chart-card,
+    .report-breakdown-card,
+    .schedule-card,
+    .services-card,
+    .chart-container {
+        padding: 1rem !important;
+        border-radius: 18px;
+    }
+
+    .admin-record-actions,
+    .service-actions,
+    .modal-container .modal-footer {
+        flex-direction: column;
+    }
+
+    .admin-record-actions .btn,
+    .service-actions .btn-edit,
+    .service-actions .btn-delete,
+    .modal-container .modal-footer .btn-cancel,
+    .modal-container .modal-footer .btn-save,
+    #saveScheduleBtn,
+    #addServiceBtn,
+    #applyReportFilter,
+    #exportPDF,
+    #exportExcel {
+        width: 100%;
+    }
+
+    .report-filter-card .d-flex.gap-2 {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        padding: 0.85rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .schedule-item {
+        padding: 0.95rem 1rem;
+        border-radius: 14px;
+    }
+
+    .time-picker {
+        width: 100%;
     }
 }
