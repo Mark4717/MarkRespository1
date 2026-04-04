@@ -750,13 +750,32 @@ main:focus,
 
 @media (max-width: 767.98px) {
     .main-header {
-        padding: 0.75rem !important;
+        min-height: 64px;
+        padding: 0.6rem 0.75rem !important;
     }
 
-    .header-logo .lh-1 small,
+    .header-logo {
+        gap: 0.5rem;
+        min-width: 0;
+    }
+
+    .header-logo img {
+        width: 36px;
+    }
+
+    .header-logo .lh-1 {
+        min-width: 0;
+    }
+
     .header-logo .lh-1 span {
+        font-size: 1.1rem;
+        line-height: 1.1;
+    }
+
+    .header-logo .lh-1 small {
         display: block;
-        line-height: 1.2;
+        line-height: 1.15;
+        font-size: 0.82rem;
     }
 
     #sidebar {
@@ -781,8 +800,18 @@ main:focus,
         width: 100%;
     }
 
+    .content-section {
+        padding-bottom: 1rem;
+    }
+
+    .responsive-page-title {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+        margin-bottom: 0.75rem;
+    }
+
     .responsive-page-subtitle {
-        font-size: 0.98rem;
+        font-size: 0.95rem;
+        margin-bottom: 1rem !important;
     }
 
     .card-item-light,
@@ -803,7 +832,57 @@ main:focus,
         padding: 1rem !important;
     }
 
+    .stat-card {
+        min-height: 108px;
+        padding: 1rem 0.85rem !important;
+        border-radius: 14px;
+    }
+
+    .stat-card small {
+        font-size: 0.62rem;
+        letter-spacing: 0.7px;
+        margin-bottom: 0.55rem;
+    }
+
     .display-5 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+
+    .action-bar span.d-block {
+        font-size: 0.98rem;
+    }
+
+    .action-bar small {
+        font-size: 0.8rem;
+    }
+
+    .responsive-action-buttons .btn {
+        padding: 0.85rem 1rem;
+        font-size: 0.88rem;
+    }
+
+    #recentAppointmentsList .list-item,
+    .appointment-list .card-item-light,
+    #emergencyRequestsList .card-item-light,
+    #medicalRecordsList .card-item-light {
+        padding: 0.95rem !important;
+    }
+
+    .filter-bar {
+        gap: 0.6rem;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .filter-tab {
+        min-width: 0;
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .custom-input {
+        padding: 0.9rem !important;
+        font-size: 0.95rem;
     }
 }

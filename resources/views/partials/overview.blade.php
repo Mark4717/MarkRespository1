@@ -11,25 +11,25 @@
         @endif
     </p>
     <div class="row g-4 mb-4">
-        <div class="col-12 col-sm-6 col-xl-3">
+        <div class="col-6 col-xl-3">
             <div class="stat-card h-100">
                 <small>Total<br>Appointment</small>
                 <div class="display-5 fw-bold mt-auto" id="totalAppointments">{{ $totalAppointments }}</div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3">
+        <div class="col-6 col-xl-3">
             <div class="stat-card h-100">
                 <small>Pending<br>Status</small>
                 <div class="display-5 fw-bold mt-auto" id="pendingAppointments">{{ $pendingAppointments }}</div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3">
+        <div class="col-6 col-xl-3">
             <div class="stat-card h-100">
                 <small>Approved<br>Status</small>
                 <div class="display-5 fw-bold mt-auto" id="approvedAppointments">{{ $completedAppointments }}</div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3">
+        <div class="col-6 col-xl-3">
             <div class="stat-card h-100">
                 <small>Upcoming<br>Visit</small>
                 <div class="display-5 fw-bold mt-auto" id="upcomingVisits">{{ $totalMedicalRecords }}</div>
