@@ -15,14 +15,14 @@
     </div>
 
     <div class="row g-3 mb-4">
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
             <div class="hotline-card p-3 text-center">
                 <i class="bi bi-telephone-fill fs-4"></i>
                 <h6 class="mt-2">CHMSU Clinic Emergency</h6>
                 <strong>+63 (34) 123-4567</strong>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
             <div class="hotline-card p-3 text-center">
                 <i class="bi bi-telephone-fill fs-4"></i>
                 <h6 class="mt-2">National Emergency Hotline</h6>
@@ -39,12 +39,12 @@
                 <label class="small fw-bold">Patient Full Name *</label>
                 <input type="text" class="form-control custom-input" id="emergencyPatientName" placeholder="Enter full name" value="{{ $user->first_name }} {{ $user->last_name }}" required>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
+            <div class="row mb-3 g-3">
+                <div class="col-12 col-md-6">
                     <label class="small fw-bold">Contact Number *</label>
                     <input type="tel" class="form-control custom-input" id="emergencyContact" placeholder="+63 XXX XXX XXXX" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-md-6">
                     <label class="small fw-bold">Current Location *</label>
                     <input type="text" class="form-control custom-input" id="emergencyLocation" placeholder="Building/Room/Landmark" required>
                 </div>

@@ -1,7 +1,7 @@
 <!-- Book Appointment Section -->
 <section id="book-section" class="content-section d-none">
-    <h1 class="fw-bold">BOOK APPOINTMENT</h1>
-    <p class="mb-4">Schedule your medical appointment with our clinic</p>
+    <h1 class="fw-bold responsive-page-title">BOOK APPOINTMENT</h1>
+    <p class="mb-4 responsive-page-subtitle">Schedule your medical appointment with our clinic</p>
     <div class="dark-list-container p-4">
         <h5 class="fw-bold mb-3">Appointment Details</h5>
         <form id="appointmentForm" action="{{ route('dashboard.book-appointment') }}" method="POST">
@@ -17,12 +17,12 @@
                     <option value="Dental Check-up">Dental Check-up</option>
                 </select>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
+            <div class="row mb-3 g-3">
+                <div class="col-12 col-md-6">
                     <label class="form-label small">Preferred Date *</label>
                     <input type="date" id="appointmentDate" name="appointment_date" class="form-control custom-input" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-md-6">
                     <label class="form-label small">Preferred Time *</label>
                     <input type="time" id="appointmentTime" name="appointment_time" class="form-control custom-input" required>
                 </div>
@@ -44,7 +44,7 @@
                     <li>Bring your School ID and any relevant medical documents</li>
                 </ul>
             </div>
-            <div class="d-flex justify-content-center gap-3">
+            <div class="d-flex justify-content-center gap-3 flex-wrap responsive-form-actions">
                 <button type="button" class="btn btn-cancel-card px-5 rounded-pill" id="cancelBooking">CANCEL</button>
                 <button type="submit" class="btn btn-submit px-5 rounded-pill">SUBMIT APPOINTMENT</button>
             </div>

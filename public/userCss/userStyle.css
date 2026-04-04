@@ -609,6 +609,15 @@ main:focus,
     box-shadow: 0 5px 15px rgba(46,204,113,0.3);
 }
 
+.responsive-page-title {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1.15;
+}
+
+.responsive-page-subtitle {
+    max-width: 60rem;
+}
+
 @media (max-width: 768px) {
     .stat-card {
         min-height: 120px;
@@ -712,6 +721,31 @@ main:focus,
         height: 110px;
         font-size: 4rem;
     }
+
+    .responsive-action-bar {
+        flex-direction: column;
+        align-items: stretch !important;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .responsive-action-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .responsive-action-buttons .btn,
+    .responsive-viewall-btn {
+        width: 100%;
+    }
+
+    .appointment-list .d-flex.justify-content-between.align-items-start,
+    #recentAppointmentsList .list-item.d-flex.justify-content-between,
+    #emergencyRequestsList .d-flex.justify-content-between.align-items-start {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.85rem;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -743,6 +777,14 @@ main:focus,
         width: 100%;
     }
 
+    .responsive-form-actions .btn {
+        width: 100%;
+    }
+
+    .responsive-page-subtitle {
+        font-size: 0.98rem;
+    }
+
     .card-item-light,
     .card-item-dark,
     .dark-list-container,
@@ -754,5 +796,14 @@ main:focus,
 
     .modal-dialog {
         margin: 0.75rem;
+    }
+
+    .dark-list-container,
+    .action-bar {
+        padding: 1rem !important;
+    }
+
+    .display-5 {
+        font-size: 2rem;
     }
 }

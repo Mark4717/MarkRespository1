@@ -1,22 +1,22 @@
 <!-- Medical Records Section -->
 <section id="records-section" class="content-section d-none">
-    <h1 class="fw-bold">MEDICAL RECORDS</h1>
-    <p>View your complete medical history</p>
+    <h1 class="fw-bold responsive-page-title">MEDICAL RECORDS</h1>
+    <p class="responsive-page-subtitle">View your complete medical history</p>
 
     <div class="row g-4 mb-4 justify-content-center">
-        <div class="col-md-3">
+        <div class="col-12 col-sm-6 col-xl-3">
             <div class="stat-card p-3">
                 <small>TOTAL VISITS</small>
                 <div class="display-5 fw-bold" id="totalVisits">0</div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-sm-6 col-xl-3">
             <div class="stat-card p-3">
                 <small>MEDICAL CERTIFICATES</small>
                 <div class="display-5 fw-bold" id="totalCertificates">0</div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-sm-6 col-xl-3">
             <div class="stat-card p-3">
                 <small>LAST VISIT</small>
                 <div class="display-5 fw-bold" id="lastVisitDate">N/A</div>
